@@ -23,7 +23,7 @@ const Hero = ({ movies }) => {
               <div className="movie-card-container">
                 <div
                   className="movie-card"
-                  style={{ "--img": `url(${movie.backdrops[0]})` }}
+                  style={{ "--img": `url(${movie.backdrops[1]})` }}
                 >
                   <div className="movie-detail">
                     <div className="movie-poster">
