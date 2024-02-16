@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import api from "../../api/axiosConfig";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
@@ -6,13 +6,25 @@ import ReviewsForm from "./ReviewsForm";
 
 import React from "react";
 
-const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
+const Reviews = () => {
+  const [movie, setMovie] = useState();
+  const [reviews, setReviews] = useState();
   const revText = useRef();
   let params = useParams();
   const movieId = params.movieId;
 
+  const getMovieDetail = async () => {
+    try {
+      const response = await api.get(`/api/v1/movies/${movieId}`);
+      setMovie(response.data);
+      setReviews(response.data.reviewIds);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    getMovieData(movieId);
+    getMovieDetail();
   }, []);
 
   const addReview = async (e) => {
@@ -68,7 +80,7 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
           }
           {reviews?.map((r) => {
             return (
-              <>
+              <div key={r.body}>
                 <Row>
                   <Col>{r.body}</Col>
                 </Row>
@@ -77,7 +89,7 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
                     <hr />
                   </Col>
                 </Row>
-              </>
+              </div>
             );
           })}
         </Col>

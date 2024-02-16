@@ -5,6 +5,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import Carousel from "react-material-ui-carousel";
 import { Link, useNavigate } from "react-router-dom";
+import "./hero.css";
 
 const Hero = ({ movies }) => {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ const Hero = ({ movies }) => {
   function reviews(movieId) {
     navigate(`/reviews/${movieId}`);
   }
+
   return (
     <div className="movie-carousel-container">
       <Carousel>
