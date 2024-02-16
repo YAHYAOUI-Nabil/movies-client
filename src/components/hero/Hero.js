@@ -32,7 +32,7 @@ const Hero = ({ movies }) => {
                     </div>
                     <div className="movie-buttons-container">
                       <Link
-                        to={`/Trailer/${movie.trailerLink.substring(
+                        to={`/trailer/${movie.trailerLink.substring(
                           movie.trailerLink.length - 11
                         )}`}
                       >
